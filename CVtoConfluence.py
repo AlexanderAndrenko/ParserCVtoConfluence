@@ -3,6 +3,7 @@ from tkinter import ttk
 # from xml.dom import minidom
 import xml.etree.ElementTree as ET
 import ParseXMLtoConfluence as p
+import CreatePage
 
 root = Tk()
 root.title("Convert CV XML to text for Confluence")
@@ -16,7 +17,7 @@ def ClickbtnConvertion():
 
     xml = editorInput.get("1.0", "end")
     
-    titles = p.parse_CV_XML_to_Confluence(xml)
+    titles = CreatePage.create_page(xml) #p.parse_CV_XML_to_Confluence(xml)
 
     InsertTextToOutput(editorOutput, titles)
     

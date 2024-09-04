@@ -1,6 +1,4 @@
 import xml.etree.ElementTree as ET
-import dominate as dom
-from dominate.tags import *
 
 def parse_CV_XML_to_Confluence(xml):
     """
