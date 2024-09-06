@@ -15,7 +15,7 @@ def parse_inline_type(element) -> InlineType:
 def parse_calculation_definition(element) -> CalculationDefinition:
     return CalculationDefinition(
         language=element.get("language"),
-        formula=element.text.strip()
+        formula=element.find('formula').text
     )
 
 # Парсер для Element
@@ -45,8 +45,8 @@ def parse_mapping(element) -> Mapping:
 def parse_input(element) -> Input:
     mappings = [parse_mapping(m) for m in element.findall("mapping")]
     return Input(
-        entity=element.get("entity"),
-        viewNode=element.get("viewNode"),
+        entity=element.find('entity').text if element.find('entity') != None else None,
+        viewNode=element.find('viewNode').text if element.find('viewNode') != None else None,
         mappings=mappings
     )
 
@@ -54,7 +54,7 @@ def parse_input(element) -> Input:
 def parse_filter_expression(element) -> FilterExpression:
     return FilterExpression(
         language=element.get("language"),
-        formula=element.text.strip()
+        formula=element.find('formula').text
     )
 
 # Парсер для Join
@@ -110,10 +110,11 @@ def parse_parameter(element) -> Parameter:
 
 # Парсер для ColumnView
 def parse_column_view(xml_string: str) -> ColumnView:
+
     root = ET.fromstring(xml_string)
     
-    parameters = [parse_parameter(p) for p in root.findall("parameters/parameter")]
-    view_nodes = [parse_view_node(vn) for vn in root.findall("viewNodes/viewNode")]
+    parameters = [parse_parameter(p) for p in root.findall("parameter")]
+    view_nodes = [parse_view_node(vn) for vn in root.findall("viewNode")]
     
     return ColumnView(
         schemaVersion=root.get("schemaVersion"),
