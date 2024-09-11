@@ -12,6 +12,7 @@ def create_page(xml):
     page = ''
 
     list_viewNodes = ol()
+    list_viewNodes['type'] = 1
     list_items = []
 
     for viewNode in cv.viewNodes:
@@ -29,25 +30,24 @@ def create_page(xml):
                 second_line.add(strong_name)
                 list_item.add(second_line)
 
-                list_item.add(p())
                 # Вставляем таблицу со списком используемых столбцов
                 columns, rows, row_style = get_columns_rows_from_elements(viewNode.elements)
                 list_item.add(create_table(columns, rows, row_style))
-                list_item.add(p())
 
                 if(viewNode.filterExpression != None):
                     filter = create_filter_block(viewNode.filterExpression)
                     list_item.add(filter)
 
             case 'View:JoinNode':
-                list_item = h1('БЛОК НЕ ОПРЕДЕЛЕН')
+                list_item.add( p('БЛОК НЕ ОПРЕДЕЛЕН'))
 
             case 'View:Aggregation':
-                list_item = h1('БЛОК НЕ ОПРЕДЕЛЕН')
+                list_item.add(p('БЛОК НЕ ОПРЕДЕЛЕН'))
 
             case _:
-                list_item = h1('БЛОК НЕ ОПРЕДЕЛЕН')
+                list_item.add(p('БЛОК НЕ ОПРЕДЕЛЕН'))
 
+        list_item.add(p()) # Делаем отступ в конце каждого элемента списка
         list_items.append(list_item)
 
     list_viewNodes.add(*list_items)
@@ -81,7 +81,10 @@ def get_columns_rows_from_elements(elements: List[Element]):
     for element in elements:
         row = []
         row.append(element.name)
-        row.append(str(element.inlineType.name) + '(' + str(element.inlineType.length) + ')')
+        datatype = element.inlineType.primitiveType
+        if(element.inlineType.length != None):
+            datatype += '(' + str(element.inlineType.length) + ')'
+        row.append(datatype)
         language = element.calculationDefinition.language if element.calculationDefinition != None else ''
         row.append(language)
         formula = element.calculationDefinition.formula if element.calculationDefinition != None else ''
@@ -104,7 +107,7 @@ def create_table(columns: List, rows: List[List], row_style: List = None):
     headers = tr()
 
     for item in columns:
-        column = td(item, scope='col')
+        column = th(item, scope='col')
         headers.add(column)
     
     tbl_body.add(headers)
@@ -134,7 +137,8 @@ def create_filter_block(filter: FilterExpression):
     """
     Функция создания блока фильтра
     """
-    filter_block = p('Устанавливается фильтр:')
+    filter_block = p()
+    filter_block.add((p('Устанавливается фильтр:')))
     columns = ['Язык', 'Формула']
     rows = []
     row = []
