@@ -26,7 +26,14 @@ def create_page(xml):
 
                 second_line = p('Из ')
                 strong_name = strong()
-                strong_name.add_raw_string(viewNode.inputs[0].entity[4:]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
+
+                if(viewNode.inputs[0].entity != None):
+                    # strong_name.add_raw_string(viewNode.inputs[0].entity[4:]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
+                    strong_name.add(viewNode.inputs[0].entity[4:])
+                else:
+                    strong_name.add_raw_string(viewNode.inputs[0].viewNode[str(viewNode.inputs[0].viewNode).find(str(viewNode.name)):]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
+
+                    
                 second_line.add(strong_name)
                 list_item.add(second_line)
 
@@ -54,10 +61,18 @@ def create_page(xml):
                 strong_join_type.add(viewNode.join.joinType.upper().replace('OUTER', '') + ' JOIN')
                 second_line.add_raw_string(' по типу ' + str(strong_join_type))
                 list_item.add(second_line)
-
+                
+                # Формируем таблицу с типом джойна 
                 columns, rows, row_style = get_columns_rows_from_join(viewNode.join)
                 tbl_join = create_table(columns, rows, row_style)
                 list_item.add(tbl_join)
+                list_item.add(p())
+
+                # Формируем таблицу со списком используемых столбцов
+                columns_2, rows_2, row_style_2 = get_columns_rows_from_elements_for_join(viewNode)
+                tbl_join_fields = create_table(columns_2, rows_2, row_style_2)
+                list_item.add(tbl_join_fields)
+                list_item.add(p())
 
                 # Вставляем таблицу со списком используемых столбцов
                 # columns, rows, row_style = get_columns_rows_from_elements_aggregation(viewNode.elements)
@@ -102,7 +117,7 @@ def get_columns_rows_from_elements_projection(elements: List[Element]):
     """
     columns = ['Наименование поля', 'Тип данных', 'Вычисляемый столбец', 'Формула']
     rows = []
-    row_style = []
+    rows_style = []
 
     for element in elements:
         row = []
@@ -122,9 +137,9 @@ def get_columns_rows_from_elements_projection(elements: List[Element]):
         rows.append(row)
 
         style = 'background-color: #FAE99F;' if element.calculationDefinition != None else ''
-        row_style.append([style, style, style, style])
+        rows_style.append([style, style, style, style])
 
-    return columns, rows, row_style
+    return columns, rows, rows_style
 
 def get_columns_rows_from_elements_aggregation(elements: List[Element]):
     """
@@ -185,7 +200,8 @@ def create_table(columns: List, rows: List[List], row_style: List[List] = None):
         tbl_tr = tr()
         for cell in row:
             tbl_td = td()
-            tbl_td.add_raw_string(cell)
+            # tbl_td.add_raw_string(cell)
+            tbl_td.add(cell)
             tbl_tr.add(tbl_td)
         tbl_rows.append(tbl_tr)
     
@@ -257,5 +273,48 @@ def get_columns_rows_from_join(join: Join):
                 row_style.append('')
             
         rows_style.append(row_style)
+
+    return columns, rows, rows_style
+
+def get_columns_rows_from_elements_for_join(viewNode: ViewNode ): #elements: List[Element], inputs: List[Input]):
+    """
+    Функция для сбора столбцов, строк и стилей для таблицы блока Join со списком полей
+    """
+    columns = ['Исходная нода', 'Наименование поля', 'Тип данных', 'Вычисляемый столбец', 'Формула']
+    rows = []
+    rows_style = []
+
+    for element in viewNode.elements:
+        row = []
+
+        # Исходная нода
+        name = element.name
+        node = ''        
+        for input in viewNode.inputs:
+            for map in input.mappings:
+                if(map.targetName == name):
+                    node = str(input.viewNode)[str(input.viewNode).find(str(viewNode.name)):]
+        row.append(node)
+
+        # Наименование поля
+        row.append(name)
+
+        # Тип данных
+        datatype = element.inlineType.primitiveType
+        if(element.inlineType.length != None and datatype not in {'DATE', 'TIMESTAMP'}):
+            datatype += '(' + str(element.inlineType.length) + ')'
+        row.append(datatype)
+
+        # Вычисляемый столбец
+        language = element.calculationDefinition.language if element.calculationDefinition != None else ''
+        row.append(language)
+
+        # Формула
+        formula = element.calculationDefinition.formula if element.calculationDefinition != None else ''
+        row.append(formula)
+        rows.append(row)
+
+        style = 'background-color: #FAE99F;' if element.calculationDefinition != None else ''
+        rows_style.append([style, style, style, style, style])
 
     return columns, rows, rows_style
