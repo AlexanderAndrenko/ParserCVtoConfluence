@@ -1,6 +1,7 @@
 from dominate.tags import *
 import Parser
 from DataModel import *
+import re
 
 def create_page(xml):
     """
@@ -28,11 +29,9 @@ def create_page(xml):
                 strong_name = strong()
 
                 if(viewNode.inputs[0].entity != None):
-                    # strong_name.add_raw_string(viewNode.inputs[0].entity[4:]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
-                    strong_name.add(viewNode.inputs[0].entity[4:])
+                    strong_name.add(re.sub('#/?./','',str(viewNode.inputs[0].entity)))
                 else:
-                    strong_name.add_raw_string(viewNode.inputs[0].viewNode[str(viewNode.inputs[0].viewNode).find(str(viewNode.name)):]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
-
+                    strong_name.add(re.sub('#/?./','',str(viewNode.inputs[0].viewNode)))
                     
                 second_line.add(strong_name)
                 list_item.add(second_line)
@@ -51,15 +50,16 @@ def create_page(xml):
 
                 second_line = p('Соединение ')
                 first_strong_name = strong()
-                first_strong_name.add_raw_string(viewNode.inputs[0].viewNode[4:]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
+                first_strong_name.add(re.sub('#/?./','',str(viewNode.inputs[0].viewNode)))
                 second_line.add(first_strong_name)
                 second_line.add(' и ')
                 second_strong_name = strong()
-                second_strong_name.add_raw_string(viewNode.inputs[1].viewNode[4:]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
+                second_strong_name.add(re.sub('#/?./','',str(viewNode.inputs[1].viewNode)))
                 second_line.add(second_strong_name)
                 strong_join_type = strong()
                 strong_join_type.add(viewNode.join.joinType.upper().replace('OUTER', '') + ' JOIN')
-                second_line.add_raw_string(' по типу ' + str(strong_join_type))
+                second_line.add(' по типу ')
+                second_line.add(strong_join_type)
                 list_item.add(second_line)
                 
                 # Формируем таблицу с типом джойна 
@@ -88,7 +88,7 @@ def create_page(xml):
 
                 second_line = p('Агрегация из ')
                 strong_name = strong()
-                strong_name.add_raw_string(viewNode.inputs[0].viewNode[4:]) # Необходимо использовать метод add_raw_string, так как иначе происходит экранирование кавычек при рендеринге
+                strong_name.add(re.sub('#/?./','',str(viewNode.inputs[0].viewNode))) 
                 second_line.add(strong_name)
                 list_item.add(second_line)
 
@@ -241,9 +241,9 @@ def get_columns_rows_from_join(join: Join):
     rows = []
     rows_style = []
     columns_style = []
-    left_table = join.leftInput[4:]
+    left_table = re.sub('#/?./','',str(join.leftInput))
     left_table = left_table[left_table.find('/') + 1:]
-    right_table = join.rightInput[4:]
+    right_table = re.sub('#/?./','',str(join.rightInput))
     right_table = right_table[right_table.find('/') + 1:]
 
     for index in range(0, len(join.leftElementName)):
@@ -266,7 +266,7 @@ def get_columns_rows_from_join(join: Join):
         row_style = []
 
         for column in range(0, len(columns)):  
-            # Собирам стили ячеек строки (по столбцам)          
+            # Собираем стили ячеек строки (по столбцам)          
             if(column in columns_style):
                 row_style.append('background-color: #99e3dd;')
             else:
@@ -293,7 +293,7 @@ def get_columns_rows_from_elements_for_join(viewNode: ViewNode ): #elements: Lis
         for input in viewNode.inputs:
             for map in input.mappings:
                 if(map.targetName == name):
-                    node = str(input.viewNode)[str(input.viewNode).find(str(viewNode.name)):]
+                    node = re.sub('#/?./','',str(input.viewNode))
         row.append(node)
 
         # Наименование поля
