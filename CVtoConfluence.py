@@ -20,922 +20,2544 @@ def ClickbtnConvertion():
     InsertTextToOutput(editorOutput, titles)
     
 cv_stock = '''<?xml version="1.0" encoding="UTF-8"?>
-<View:ColumnView xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Type="http://www.sap.com/ndb/DataModelType.ecore" xmlns:View="http://www.sap.com/ndb/ViewModelView.ecore" schemaVersion="2.3" name="CV_XTR_ERP_STOCK" dataCategory="CUBE" hierarchiesSQLEnabled="false" defaultNode="#//Aggregation" clientDependent="false" applyPrivilegeType="ANALYTIC_PRIVILEGE" translationRelevant="true">
-  <endUserTexts label="CV_XTR_ERP_STOCK"/>
+<View:ColumnView xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Param="http://www.sap.com/ndb/ViewModelParameter.ecore" xmlns:Type="http://www.sap.com/ndb/DataModelType.ecore" xmlns:View="http://www.sap.com/ndb/ViewModelView.ecore" schemaVersion="2.3" name="CV_LOSS_PICK_MAIN_01" dataCategory="DIMENSION" hierarchiesSQLEnabled="false" defaultNode="#/0/Projection" clientDependent="false" applyPrivilegeType="ANALYTIC_PRIVILEGE" translationRelevant="true">
+  <endUserTexts label="CV_LOSS_PICK"/>
   <origin/>
+  <parameter xsi:type="Param:DerivedParameter" name="IP_MANDT" mandatory="false" multipleSelections="false">
+    <endUserTexts label="IP_MANDT"/>
+    <inlineType name="CHAR" primitiveType="CHAR"/>
+    <defaultValue xsi:nil="true"/>
+    <derivationRule inputEnabled="false">
+      <scriptObject>#/1</scriptObject>
+    </derivationRule>
+  </parameter>
   <executionHints/>
-  <viewNode xsi:type="View:Projection" name="MARC_">
+  <viewNode xsi:type="View:Projection" name="W597_EXSTKCAT">
     <endUserTexts label=" "/>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="TRAME">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="UMLMC">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="GLGMG">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="BWESB">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
     <element name="MANDT">
       <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
     </element>
-    <element name="RECTOTSTCK" aggregationBehavior="NONE">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" scale="3"/>
+    <element name="PACKNM">
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="PARNM">
+      <inlineType primitiveType="NVARCHAR" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="VALLOW">
+      <inlineType primitiveType="NVARCHAR" length="255" precision="255" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>(&quot;MANDT&quot;='$$IP_MANDT$$')&#xD;
+and (&quot;PACKNM&quot;='ZSBL_W597')&#xD;
+and (&quot;PARNM&quot;='EXSTKCAT')</formula>
+    </filterExpression>
+    <input>
+      <entity>#/0/"SAPHANADB".ZRBST_UPARVAL</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PACKNM" sourceName="PACKNM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PARNM" sourceName="PARNM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VALLOW" sourceName="VALLOW"/>
+    </input>
+    <layout xCoordinate="22" yCoordinate="1845" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_4">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="QUAN">
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <input>
+      <entity>#/0/REPORTING.LOSS::CV_LOSS_PICK_INV</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUAN" sourceName="QUAN"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+    </input>
+    <layout xCoordinate="99" yCoordinate="1941" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Aggregation" name="Aggregation_4">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="FLGHUTO">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="CAT">
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC" aggregationBehavior="NONE">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP"/>
       <calculationDefinition language="COLUMN_ENGINE">
-        <formula>&quot;TRAME&quot;+&quot;UMLMC&quot;+&quot;GLGMG&quot;+&quot;BWESB&quot;</formula>
+        <formula>&quot;CREATED_AT&quot;</formula>
       </calculationDefinition>
     </element>
-    <element name="BATCH" aggregationBehavior="NONE">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10"/>
+    <element name="CONFIRMED_AT_UTC" aggregationBehavior="NONE">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP"/>
       <calculationDefinition language="COLUMN_ENGINE">
-        <formula>''</formula>
+        <formula>&quot;CONFIRMED_AT&quot;</formula>
       </calculationDefinition>
     </element>
     <filterExpression language="COLUMN_ENGINE">
-      <formula>&quot;PLANT&quot;!='' and &quot;RECTOTSTCK&quot;!=0</formula>
+      <formula>(&quot;MANDT&quot;='$$IP_MANDT$$')</formula>
     </filterExpression>
     <input>
-      <entity>#//"SAPHANADB".NSDM_V_MARC</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATNR"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="WERKS"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="TRAME" sourceName="TRAME"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="UMLMC" sourceName="UMLMC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="GLGMG" sourceName="GLGMG"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BWESB" sourceName="BWESB"/>
+      <entity>#/0/"SAPHANADB"./SCWM/ORDIM_C</entity>
       <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="FLGHUTO" sourceName="FLGHUTO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT" sourceName="CREATED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
     </input>
-    <layout xCoordinate="22" yCoordinate="779" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Projection" name="MCHB_">
-    <endUserTexts label=" "/>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="CLABS">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="CINSM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="CSPEM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="CUMLM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="CRETM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="CEINM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK" aggregationBehavior="NONE">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" scale="3"/>
-      <calculationDefinition language="COLUMN_ENGINE">
-        <formula>&quot;CLABS&quot;+&quot;CINSM&quot;+&quot;CSPEM&quot;+&quot;CUMLM&quot;+&quot;CRETM&quot;+&quot;CEINM&quot;</formula>
-      </calculationDefinition>
-    </element>
-    <filterExpression language="COLUMN_ENGINE">
-      <formula>&quot;PLANT&quot;!=''  and &quot;RECTOTSTCK&quot;!=0</formula>
-    </filterExpression>
-    <input>
-      <entity>#//"SAPHANADB".NSDM_V_MCHB</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATNR"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="WERKS"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="LGORT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="CHARG"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CLABS" sourceName="CLABS"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CINSM" sourceName="CINSM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CSPEM" sourceName="CSPEM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CUMLM" sourceName="CUMLM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CRETM" sourceName="CRETM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CEINM" sourceName="CEINM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <layout xCoordinate="417" yCoordinate="1031" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Projection" name="MARD_">
-    <endUserTexts label=" "/>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="LABST">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="INSME">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="SPEME">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="RETME">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="UMLME">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK" aggregationBehavior="NONE">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" scale="3"/>
-      <calculationDefinition language="COLUMN_ENGINE">
-        <formula>&quot;LABST&quot;+&quot;INSME&quot;+&quot;SPEME&quot;+&quot;RETME&quot;+&quot;UMLME&quot;</formula>
-      </calculationDefinition>
-    </element>
-    <element name="BATCH" aggregationBehavior="NONE">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10"/>
-      <calculationDefinition language="COLUMN_ENGINE">
-        <formula>''</formula>
-      </calculationDefinition>
-    </element>
-    <filterExpression language="COLUMN_ENGINE">
-      <formula>&quot;PLANT&quot;!='' and &quot;RECTOTSTCK&quot;!=0</formula>
-    </filterExpression>
-    <input>
-      <entity>#//"SAPHANADB".NSDM_V_MARD</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATNR"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="WERKS"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="LGORT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="LABST" sourceName="LABST"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="INSME" sourceName="INSME"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SPEME" sourceName="SPEME"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RETME" sourceName="RETME"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="UMLME" sourceName="UMLME"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <layout xCoordinate="176" yCoordinate="953" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Aggregation" name="MKOL">
-    <endUserTexts label=" "/>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="SLABS" aggregationBehavior="SUM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="SINSM" aggregationBehavior="SUM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="SSPEM" aggregationBehavior="SUM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="SEINM" aggregationBehavior="SUM">
-      <inlineType primitiveType="DECIMAL" length="18" precision="18" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK" aggregationBehavior="NONE">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" scale="3"/>
-      <calculationDefinition language="COLUMN_ENGINE">
-        <formula>&quot;SLABS&quot;+&quot;SINSM&quot;+&quot;SSPEM&quot;+&quot;SEINM&quot;</formula>
-      </calculationDefinition>
-    </element>
-    <filterExpression language="COLUMN_ENGINE">
-      <formula>&quot;PLANT&quot;!='' and &quot;RECTOTSTCK&quot;!=0</formula>
-    </filterExpression>
-    <input>
-      <entity>#//"SAPHANADB".NSDM_V_MKOL</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATNR"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="WERKS"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="LGORT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="CHARG"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SLABS" sourceName="SLABS"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SINSM" sourceName="SINSM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SSPEM" sourceName="SSPEM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SEINM" sourceName="SEINM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <layout xCoordinate="176" yCoordinate="779" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Aggregation" name="Aggregation_1">
-    <endUserTexts label=" "/>
-    <element name="MATERIAL_MCHB">
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK" aggregationBehavior="SUM">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <input>
-      <viewNode xsi:type="View:Projection">#//MCHB_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL_MCHB" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <layout xCoordinate="330" yCoordinate="953" width="0" height="0" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:JoinNode" name="EXCEPT1" joinOrder="OUTSIDE_IN">
-    <endUserTexts label=" "/>
-    <element name="RECTOTSTCK">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="MATERIAL_MCHB">
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
-    </element>
-    <input>
-      <viewNode xsi:type="View:Projection">#//MARD_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-    </input>
-    <input>
-      <viewNode xsi:type="View:Aggregation">#//Aggregation_1</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL_MCHB" sourceName="MATERIAL_MCHB"/>
-    </input>
-    <layout xCoordinate="330" yCoordinate="857" width="-1" height="-1" expanded="true"/>
-    <join leftInput="#//EXCEPT1/MARD_" rightInput="#//EXCEPT1/Aggregation_1" joinType="leftOuter">
-      <leftElementName>MATERIAL</leftElementName>
-      <leftElementName>PLANT</leftElementName>
-      <leftElementName>STOR_LOC</leftElementName>
-      <leftElementName>MANDT</leftElementName>
-      <rightElementName>MATERIAL_MCHB</rightElementName>
-      <rightElementName>PLANT</rightElementName>
-      <rightElementName>STOR_LOC</rightElementName>
-      <rightElementName>MANDT</rightElementName>
-    </join>
-  </viewNode>
-  <viewNode xsi:type="View:Projection" name="EXCEPT2">
-    <endUserTexts label=" "/>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="MATERIAL_MCHB">
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
-    </element>
-    <filterExpression language="COLUMN_ENGINE">
-      <formula>isNull(&quot;MATERIAL_MCHB&quot;)</formula>
-    </filterExpression>
-    <input>
-      <viewNode xsi:type="View:JoinNode">#//EXCEPT1</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL_MCHB" sourceName="MATERIAL_MCHB"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-    </input>
-    <layout xCoordinate="330" yCoordinate="779" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Union" name="Union_1">
-    <endUserTexts label=" "/>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <input emptyUnionBehavior="NO_ROW">
-      <viewNode xsi:type="View:Projection">#//MARC_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ConstantElementMapping" targetName="STOR_LOC" value="" null="true"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <input emptyUnionBehavior="NO_ROW">
-      <viewNode xsi:type="View:Projection">#//MCHB_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <input emptyUnionBehavior="NO_ROW">
-      <viewNode xsi:type="View:Aggregation">#//MKOL</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <input emptyUnionBehavior="NO_ROW">
-      <viewNode xsi:type="View:Projection">#//EXCEPT2</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <layout xCoordinate="330" yCoordinate="627" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Projection" name="MARA_">
-    <endUserTexts label=" "/>
-    <element name="MATNR">
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="SYSTEM_ID">
-      <endUserTexts label="SYSTEM_ID"/>
-      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="BISMT">
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PRODUCT_ID" aggregationBehavior="NONE">
-      <endUserTexts label="PRODUCT_ID"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="40"/>
-      <calculationDefinition language="SQL">
-        <formula>substr_after(&quot;BISMT&quot;,'\')</formula>
-      </calculationDefinition>
-    </element>
-    <input>
-      <entity>#//"SAPHANADB".MARA</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SYSTEM_ID" sourceName="ZZSYSTEM_ID"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BISMT" sourceName="BISMT"/>
-    </input>
-    <layout xCoordinate="484" yCoordinate="549" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Aggregation" name="Aggregation_2">
-    <endUserTexts label=" "/>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK" aggregationBehavior="SUM">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <input>
-      <viewNode xsi:type="View:Union">#//Union_1</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <layout xCoordinate="330" yCoordinate="549" width="0" height="0" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:JoinNode" name="Join_1" joinOrder="OUTSIDE_IN">
-    <endUserTexts label=" "/>
-    <element name="SYSTEM_ID">
-      <endUserTexts label="SYSTEM_ID"/>
-      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="PRODUCT_ID">
-      <endUserTexts label="PRODUCT_ID"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="40" precision="0" scale="0"/>
-    </element>
-    <input>
-      <viewNode xsi:type="View:Aggregation">#//Aggregation_2</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <input>
-      <viewNode xsi:type="View:Projection">#//MARA_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="SYSTEM_ID" sourceName="SYSTEM_ID"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PRODUCT_ID" sourceName="PRODUCT_ID"/>
-    </input>
-    <layout xCoordinate="407" yCoordinate="453" width="0" height="0" expanded="true"/>
-    <join leftInput="#//Join_1/Aggregation_2" rightInput="#//Join_1/MARA_" joinType="inner">
-      <leftElementName>MATERIAL</leftElementName>
-      <leftElementName>MANDT</leftElementName>
-      <rightElementName>MATNR</rightElementName>
-      <rightElementName>MANDT</rightElementName>
-    </join>
-  </viewNode>
-  <viewNode xsi:type="View:Aggregation" name="VBBE_">
-    <endUserTexts label=" "/>
-    <element name="WERKS">
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="MATNR">
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="LGORT">
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="OD_ERP" aggregationBehavior="SUM">
-      <endUserTexts label="OD_ERP"/>
-      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="CHARG">
-      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
-    </element>
-    <filterExpression language="COLUMN_ENGINE">
-      <formula>&quot;OD_ERP&quot;!=0</formula>
-    </filterExpression>
-    <input>
-      <entity>#//"SAPHANADB".VBBE</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="WERKS" sourceName="WERKS"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="LGORT" sourceName="LGORT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="OD_ERP" sourceName="OMENG"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CHARG" sourceName="CHARG"/>
-    </input>
-    <layout xCoordinate="561" yCoordinate="453" width="-1" height="-1" expanded="true"/>
+    <layout xCoordinate="253" yCoordinate="1941" width="-1" height="-1" expanded="true"/>
   </viewNode>
   <viewNode xsi:type="View:JoinNode" name="Join_2" joinOrder="OUTSIDE_IN">
     <endUserTexts label=" "/>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
-    </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="SYSTEM_ID">
-      <endUserTexts label="SYSTEM_ID"/>
-      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="OD_ERP">
-      <endUserTexts label="OD_ERP"/>
-      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="3"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <element name="PRODUCT_ID">
-      <endUserTexts label="PRODUCT_ID"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="40" precision="0" scale="0"/>
-    </element>
-    <input>
-      <viewNode xsi:type="View:JoinNode">#//Join_1</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SYSTEM_ID" sourceName="SYSTEM_ID"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PRODUCT_ID" sourceName="PRODUCT_ID"/>
-    </input>
-    <input>
-      <viewNode xsi:type="View:Aggregation">#//VBBE_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="OD_ERP" sourceName="OD_ERP"/>
-    </input>
-    <layout xCoordinate="483" yCoordinate="357" width="0" height="0" expanded="true"/>
-    <join leftInput="#//Join_2/Join_1" rightInput="#//Join_2/VBBE_" joinType="leftOuter">
-      <leftElementName>PLANT</leftElementName>
-      <leftElementName>MATERIAL</leftElementName>
-      <leftElementName>STOR_LOC</leftElementName>
-      <leftElementName>MANDT</leftElementName>
-      <leftElementName>BATCH</leftElementName>
-      <rightElementName>WERKS</rightElementName>
-      <rightElementName>MATNR</rightElementName>
-      <rightElementName>LGORT</rightElementName>
-      <rightElementName>MANDT</rightElementName>
-      <rightElementName>CHARG</rightElementName>
-    </join>
-  </viewNode>
-  <viewNode xsi:type="View:Aggregation" name="TMAPSTLOC_">
-    <endUserTexts label=" "/>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="STGE_LOC">
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="LGNUM" aggregationBehavior="MAX">
-      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
-    </element>
-    <element name="AVLGRP" aggregationBehavior="MAX">
-      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
-    </element>
-    <input>
-      <entity>#//"SAPHANADB"./SCWM/TMAPSTLOC</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STGE_LOC" sourceName="STGE_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="AVLGRP" sourceName="AVLGRP"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-    </input>
-    <layout xCoordinate="637" yCoordinate="357" width="-1" height="-1" expanded="true"/>
-  </viewNode>
-  <viewNode xsi:type="View:Aggregation" name="TCAT_">
-    <endUserTexts label=" "/>
     <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="AVLGRP">
-      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
     </element>
-    <element name="CAT" aggregationBehavior="MAX">
-      <endUserTexts label="CAT"/>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="FLGHUTO">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="CAT">
       <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
     </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUAN">
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
     </element>
     <input>
-      <entity>#//"SAPHANADB"./SCWM/TCAT</entity>
-      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="AVLGRP" sourceName="AVLGRP"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <viewNode xsi:type="View:Projection">#/0/Projection_4</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUAN" sourceName="QUAN"/>
     </input>
-    <layout xCoordinate="791" yCoordinate="357" width="-1" height="-1" expanded="true"/>
+    <input>
+      <viewNode xsi:type="View:Aggregation">#/0/Aggregation_4</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="FLGHUTO" sourceName="FLGHUTO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="176" yCoordinate="1845" width="0" height="0" expanded="true"/>
+    <join leftInput="#/0/Join_2/Projection_4" rightInput="#/0/Join_2/Aggregation_4" joinType="inner">
+      <leftElementName>LGNUM</leftElementName>
+      <leftElementName>TANUM</leftElementName>
+      <rightElementName>LGNUM</rightElementName>
+      <rightElementName>TANUM</rightElementName>
+    </join>
   </viewNode>
   <viewNode xsi:type="View:JoinNode" name="Join_4" joinOrder="OUTSIDE_IN">
     <endUserTexts label=" "/>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="STGE_LOC">
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="FLGHUTO">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
     </element>
     <element name="CAT">
-      <endUserTexts label="CAT"/>
       <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
     </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    <element name="EXSTKCAT">
+      <inlineType primitiveType="NVARCHAR" length="255" precision="255" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUAN">
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
     </element>
     <input>
-      <viewNode xsi:type="View:Aggregation">#//TMAPSTLOC_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STGE_LOC" sourceName="STGE_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="FLGHUTO" sourceName="FLGHUTO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUAN" sourceName="QUAN"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
     </input>
     <input>
-      <viewNode xsi:type="View:Aggregation">#//TCAT_</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <viewNode xsi:type="View:Projection">#/0/W597_EXSTKCAT</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="EXSTKCAT" sourceName="VALLOW"/>
     </input>
-    <layout xCoordinate="637" yCoordinate="261" width="-1" height="-1" expanded="true"/>
-    <join leftInput="#//Join_4/TMAPSTLOC_" rightInput="#//Join_4/TCAT_" joinType="inner">
-      <leftElementName>LGNUM</leftElementName>
-      <leftElementName>AVLGRP</leftElementName>
-      <leftElementName>MANDT</leftElementName>
-      <rightElementName>LGNUM</rightElementName>
-      <rightElementName>AVLGRP</rightElementName>
-      <rightElementName>MANDT</rightElementName>
+    <layout xCoordinate="100" yCoordinate="1749" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_4/Join_2" rightInput="#/0/Join_4/W597_EXSTKCAT" joinType="leftOuter">
+      <leftElementName>CAT</leftElementName>
+      <rightElementName>VALLOW</rightElementName>
     </join>
   </viewNode>
-  <viewNode xsi:type="View:Projection" name="Projection_1">
+  <viewNode xsi:type="View:Projection" name="Projection_2">
     <endUserTexts label=" "/>
-    <element name="SYSTEM_ID">
-      <endUserTexts label="SYSTEM_ID"/>
-      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
     </element>
-    <element name="OD_ERP">
-      <endUserTexts label="OD_ERP"/>
-      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="3"/>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
     </element>
-    <element name="MANDT">
-      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
     </element>
-    <element name="PRODUCT_ID">
-      <endUserTexts label="PRODUCT_ID"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="40" precision="0" scale="0"/>
+    <element name="FLGHUTO">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="EXSTKCAT">
+      <inlineType primitiveType="NVARCHAR" length="255" precision="255" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
     </element>
     <filterExpression language="COLUMN_ENGINE">
-      <formula>&quot;RECTOTSTCK&quot;!=0 or &quot;OD_ERP&quot;!=0</formula>
+      <formula>isNull(&quot;EXSTKCAT&quot;)</formula>
     </filterExpression>
     <input>
-      <viewNode xsi:type="View:JoinNode">#//Join_2</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="SYSTEM_ID" sourceName="SYSTEM_ID"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="OD_ERP" sourceName="OD_ERP"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PRODUCT_ID" sourceName="PRODUCT_ID"/>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_4</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="FLGHUTO" sourceName="FLGHUTO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="EXSTKCAT" sourceName="EXSTKCAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUAN"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
     </input>
-    <layout xCoordinate="483" yCoordinate="261" width="0" height="0" expanded="true"/>
+    <layout xCoordinate="100" yCoordinate="1671" width="-1" height="-1" expanded="true"/>
   </viewNode>
-  <viewNode xsi:type="View:JoinNode" name="Join_3" joinOrder="OUTSIDE_IN">
+  <viewNode xsi:type="View:Projection" name="PRODTO">
     <endUserTexts label=" "/>
-    <element name="CAT">
-      <endUserTexts label="CAT"/>
-      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
-    </element>
-    <element name="SYSTEM_ID">
-      <endUserTexts label="SYSTEM_ID"/>
-      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="RECTOTSTCK">
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
-    </element>
-    <element name="MATERIAL">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="PLANT">
-      <endUserTexts label="PLANT"/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="STOR_LOC">
-      <endUserTexts label="STOR_LOC"/>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="BATCH">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
     </element>
-    <element name="OD_ERP_TECH">
-      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="3"/>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
     </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="FLGHUTO">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;FLGHUTO&quot;=''</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="FLGHUTO" sourceName="FLGHUTO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="100" yCoordinate="377" width="0" height="0" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="HUTO">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="FLGHUTO">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;FLGHUTO&quot;='X'</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="FLGHUTO" sourceName="FLGHUTO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="190" yCoordinate="1593" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="HUTO_WITHMAT">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>ltrim(&quot;MATID&quot;,'0')!=''</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/HUTO</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="254" yCoordinate="377" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="HUTO_WITHOUTMAT">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>ltrim(&quot;MATID&quot;,'0')=''</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/HUTO</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="365" yCoordinate="1515" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_10">
+    <endUserTexts label=" "/>
     <element name="MANDT">
       <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
     </element>
-    <element name="PRODUCT_ID">
-      <endUserTexts label="PRODUCT_ID"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="40" precision="0" scale="0"/>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
     </element>
-    <element name="OD_ERP" aggregationBehavior="NONE">
-      <endUserTexts label="OD_ERP"/>
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="15" scale="3"/>
-      <calculationDefinition language="COLUMN_ENGINE">
-        <formula>if(isnull(&quot;OD_ERP_TECH&quot;),0, &quot;OD_ERP_TECH&quot;)</formula>
-      </calculationDefinition>
+    <element name="GUID_STOCK">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
     </element>
+    <element name="GUID_STOCK0">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;MANDT&quot;='$$IP_MANDT$$'</formula>
+    </filterExpression>
     <input>
-      <viewNode xsi:type="View:Projection">#//Projection_1</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="SYSTEM_ID" sourceName="SYSTEM_ID"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="RECTOTSTCK" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="OD_ERP_TECH" sourceName="OD_ERP"/>
+      <entity>#/0/"SAPHANADB"./SCWM/QUAN</entity>
       <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PRODUCT_ID" sourceName="PRODUCT_ID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_STOCK" sourceName="GUID_STOCK"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_STOCK0" sourceName="GUID_STOCK0"/>
+    </input>
+    <layout xCoordinate="597" yCoordinate="647" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_11">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_STOCK">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;MANDT&quot;='$$IP_MANDT$$'</formula>
+    </filterExpression>
+    <input>
+      <entity>#/0/"SAPHANADB"./SCWM/AQUA</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_STOCK" sourceName="GUID_STOCK"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+    </input>
+    <layout xCoordinate="597" yCoordinate="551" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="CopyOfProjection_12">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>(&quot;MANDT&quot;='$$IP_MANDT$$')&#xD;
+and (&quot;TYPE&quot;='H')&#xD;
+and in(&quot;TYPE_PARENT&quot;,'H','L')</formula>
+    </filterExpression>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/NTREE</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE" sourceName="TYPE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+    </input>
+    <layout xCoordinate="519" yCoordinate="1515" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_10" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/HUTO_WITHOUTMAT</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
     </input>
     <input>
-      <viewNode xsi:type="View:JoinNode">#//Join_4</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <viewNode xsi:type="View:Projection">#/0/CopyOfProjection_12</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
     </input>
-    <layout xCoordinate="560" yCoordinate="165" width="0" height="0" expanded="true"/>
-    <join leftInput="#//Join_3/Projection_1" rightInput="#//Join_3/Join_4" joinType="leftOuter">
-      <leftElementName>PLANT</leftElementName>
-      <leftElementName>STOR_LOC</leftElementName>
-      <leftElementName>MANDT</leftElementName>
-      <rightElementName>PLANT</rightElementName>
-      <rightElementName>STGE_LOC</rightElementName>
-      <rightElementName>MANDT</rightElementName>
+    <layout xCoordinate="453" yCoordinate="1419" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_10/HUTO_WITHOUTMAT" rightInput="#/0/Join_10/CopyOfProjection_12" joinType="inner">
+      <leftElementName>SGUID_HU</leftElementName>
+      <rightElementName>GUID</rightElementName>
     </join>
   </viewNode>
-  <viewNode xsi:type="View:Aggregation" name="Aggregation">
-    <element name="MATERIAL" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
-      <endUserTexts label="MATERIAL"/>
-      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
-    </element>
-    <element name="SYSTEM_ID" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
-      <endUserTexts label="SYSTEM_ID"/>
-      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
-    </element>
-    <element name="PLANT" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
-      <endUserTexts label="PLANT"/>
+  <viewNode xsi:type="View:Projection" name="Projection_13">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="STOR_LOC" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
-      <endUserTexts label="STOR_LOC"/>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
       <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
     </element>
-    <element name="BATCH" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
-      <endUserTexts label="BATCH"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="10" precision="0" scale="0"/>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
     </element>
-    <element name="CAT" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
-      <endUserTexts label="CAT"/>
-      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
     </element>
-    <element name="PRODUCT_ID" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
-      <endUserTexts label="PRODUCT_ID"/>
-      <inlineType name="NVARCHAR" primitiveType="NVARCHAR" length="40" precision="0" scale="0"/>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
     </element>
-    <element name="ALL_ERP" aggregationBehavior="SUM" engineAggregation="SUM">
-      <endUserTexts label="ALL_ERP"/>
-      <inlineType primitiveType="DECIMAL" length="13" precision="0" scale="3"/>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
     </element>
-    <element name="OD_ERP" aggregationBehavior="SUM" engineAggregation="SUM">
-      <endUserTexts label="OD_ERP"/>
-      <inlineType primitiveType="DECIMAL" length="15" precision="0" scale="3"/>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
     </element>
-    <element name="FREE_ERP" hidden="false" aggregationBehavior="FORMULA" engineAggregation="FORMULA">
-      <endUserTexts label="FREE_ERP"/>
-      <inlineType name="DECIMAL" primitiveType="DECIMAL" length="18" scale="3"/>
-      <calculationDefinition language="COLUMN_ENGINE">
-        <formula>&quot;ALL_ERP&quot;-&quot;OD_ERP&quot;</formula>
-      </calculationDefinition>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;TYPE_PARENT&quot;='L'</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_10</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="453" yCoordinate="1071" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_14">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_H">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;TYPE_PARENT&quot;='H'</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_10</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_H" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="541" yCoordinate="1341" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="CopyOfCopyOfProjection_12">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>(&quot;MANDT&quot;='$$IP_MANDT$$')&#xD;
+and (&quot;TYPE&quot;='H')&#xD;
+and in(&quot;TYPE_PARENT&quot;,'H','L')</formula>
+    </filterExpression>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/NTREE</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE" sourceName="TYPE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+    </input>
+    <layout xCoordinate="695" yCoordinate="1341" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_11" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_H">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
     </element>
     <input>
-      <viewNode xsi:type="View:JoinNode">#//Join_3</viewNode>
-      <mapping xsi:type="Type:ElementMapping" targetName="MATERIAL" sourceName="MATERIAL"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="SYSTEM_ID" sourceName="SYSTEM_ID"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PLANT" sourceName="PLANT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="STOR_LOC" sourceName="STOR_LOC"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="PRODUCT_ID" sourceName="PRODUCT_ID"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="ALL_ERP" sourceName="RECTOTSTCK"/>
-      <mapping xsi:type="Type:ElementMapping" targetName="OD_ERP" sourceName="OD_ERP"/>
+      <viewNode xsi:type="View:Projection">#/0/Projection_14</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_H" sourceName="GUID_PARENT_H"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
     </input>
-    <layout xCoordinate="560" yCoordinate="87" width="0" height="0" expanded="true"/>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/CopyOfCopyOfProjection_12</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+    </input>
+    <layout xCoordinate="607" yCoordinate="1245" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_11/Projection_14" rightInput="#/0/Join_11/CopyOfCopyOfProjection_12" joinType="inner">
+      <leftElementName>GUID_PARENT_H</leftElementName>
+      <rightElementName>GUID</rightElementName>
+    </join>
   </viewNode>
-  <viewLayout relativeWidthScenario="47"/>
+  <viewNode xsi:type="View:Projection" name="Projection_15">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;TYPE_PARENT&quot;='L'</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_11</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="607" yCoordinate="1071" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_16">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_H">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>&quot;TYPE_PARENT&quot;='H'</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_11</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_H" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="695" yCoordinate="1167" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="CopyOfCopyOfCopyOfProjection_12">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>(&quot;MANDT&quot;='$$IP_MANDT$$')&#xD;
+and (&quot;TYPE&quot;='H')&#xD;
+and (&quot;TYPE_PARENT&quot;='L')</formula>
+    </filterExpression>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/NTREE</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE" sourceName="TYPE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+    </input>
+    <layout xCoordinate="849" yCoordinate="1167" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_12" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_16</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/CopyOfCopyOfCopyOfProjection_12</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT"/>
+    </input>
+    <layout xCoordinate="761" yCoordinate="1071" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_12/Projection_16" rightInput="#/0/Join_12/CopyOfCopyOfCopyOfProjection_12" joinType="inner">
+      <leftElementName>GUID_PARENT_H</leftElementName>
+      <rightElementName>GUID</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Union" name="Union_4">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID" transparentFilter="false">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:Projection">#/0/Projection_13</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:Projection">#/0/Projection_15</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:JoinNode">#/0/Join_12</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ConstantElementMapping" targetName="TYPE_PARENT" value="" null="true"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="519" yCoordinate="937" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Copy_2_Of_CopyOfProjection_12">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="GUID_PARENT">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>(&quot;MANDT&quot;='$$IP_MANDT$$')&#xD;
+and (&quot;TYPE&quot;='H')&#xD;
+and (&quot;TYPE_PARENT&quot;='H')</formula>
+    </filterExpression>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/NTREE</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE" sourceName="TYPE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT" sourceName="GUID_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+    </input>
+    <layout xCoordinate="278" yCoordinate="1071" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_13" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/HUTO_WITHOUTMAT</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Copy_2_Of_CopyOfProjection_12</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+    </input>
+    <layout xCoordinate="365" yCoordinate="937" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_13/HUTO_WITHOUTMAT" rightInput="#/0/Join_13/Copy_2_Of_CopyOfProjection_12" joinType="inner">
+      <leftElementName>SGUID_HU</leftElementName>
+      <rightElementName>GUID_PARENT</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_14" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_13</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Union">#/0/Union_4</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+    </input>
+    <layout xCoordinate="432" yCoordinate="841" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_14/Join_13" rightInput="#/0/Join_14/Union_4" joinType="inner">
+      <leftElementName>LGNUM</leftElementName>
+      <leftElementName>TANUM</leftElementName>
+      <rightElementName>LGNUM</rightElementName>
+      <rightElementName>TANUM</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Union" name="Union_5">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TYPE_PARENT">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:Union">#/0/Union_4</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TYPE_PARENT" sourceName="TYPE_PARENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:JoinNode">#/0/Join_14</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ConstantElementMapping" targetName="TYPE_PARENT" value="" null="true"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="478" yCoordinate="725" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_3">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>not(isNull(&quot;GUID&quot;))</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:Union">#/0/Union_5</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="443" yCoordinate="647" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_7" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_STOCK">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_STOCK0">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_3</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_10</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_STOCK" sourceName="GUID_STOCK"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_STOCK0" sourceName="GUID_STOCK0"/>
+    </input>
+    <layout xCoordinate="443" yCoordinate="551" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_7/Projection_3" rightInput="#/0/Join_7/Projection_10" joinType="inner">
+      <leftElementName>GUID</leftElementName>
+      <rightElementName>GUID_PARENT</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_8" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="SGUID_HU">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_PARENT_L">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_STOCK">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="GUID_STOCK0">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_7</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SGUID_HU" sourceName="SGUID_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID" sourceName="GUID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_PARENT_L" sourceName="GUID_PARENT_L"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_STOCK" sourceName="GUID_STOCK"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_STOCK0" sourceName="GUID_STOCK0"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_11</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+    </input>
+    <layout xCoordinate="443" yCoordinate="455" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_8/Join_7" rightInput="#/0/Join_8/Projection_11" joinType="inner">
+      <leftElementName>GUID_STOCK0</leftElementName>
+      <leftElementName>GUID_PARENT_L</leftElementName>
+      <rightElementName>GUID_STOCK</rightElementName>
+      <rightElementName>GUID_PARENT</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Aggregation" name="Aggregation_2">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY" aggregationBehavior="SUM">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_8</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="408" yCoordinate="377" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Union" name="Union_1">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY" transparentFilter="false">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC" transparentFilter="false">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:Projection">#/0/PRODTO</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:Projection">#/0/HUTO_WITHMAT</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <input emptyUnionBehavior="NO_ROW">
+      <viewNode xsi:type="View:Aggregation">#/0/Aggregation_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="254" yCoordinate="243" width="0" height="0" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Aggregation" name="Aggregation_1">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="MATID">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY" aggregationBehavior="SUM">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY" transparentFilter="false">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC" transparentFilter="false">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Union">#/0/Union_1</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="254" yCoordinate="165" width="0" height="0" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection">
+    <element name="LGNUM" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="GUID_DOC" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="GUID_DOC"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_YEAR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="DOC_YEAR"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_NO" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ITEM_NO"/>
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="TANUM" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="MATID" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="MATID"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="VLPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="VLENR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="VLENR"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="QUANTITY" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CREATED_AT_UTC" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY" transparentFilter="false" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_UTC" transparentFilter="false" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CREATED_AT_UTC"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Aggregation">#/0/Aggregation_1</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLENR" sourceName="VLENR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CREATED_AT_UTC" sourceName="CREATED_AT_UTC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_UTC" sourceName="CONFIRMED_AT_UTC"/>
+    </input>
+    <layout xCoordinate="254" yCoordinate="87" width="0" height="0" expanded="true"/>
+  </viewNode>
+  <viewLayout relativeWidthScenario="44"/>
 </View:ColumnView>
 '''
 
@@ -1296,7 +2918,7 @@ cv = '''<?xml version="1.0" encoding="UTF-8"?>
 
 editorInput = Text(wrap="word")
 editorInput.pack(fill="both")
-InsertTextToOutput(editorInput, cv)
+InsertTextToOutput(editorInput, cv_stock)
 
 btnConvertion = ttk.Button(text="Конвертировать", command=ClickbtnConvertion)
 btnConvertion.pack()

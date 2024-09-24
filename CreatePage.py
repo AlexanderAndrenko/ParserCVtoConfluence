@@ -66,19 +66,15 @@ def create_page(xml):
                 columns, rows, row_style = get_columns_rows_from_join(viewNode.join)
                 tbl_join = create_table(columns, rows, row_style)
                 list_item.add(tbl_join)
-                list_item.add(p())
 
                 # Формируем таблицу со списком используемых столбцов
+                list_item.add(p('Исходящие поля'))
                 columns_2, rows_2, row_style_2 = get_columns_rows_from_elements_for_join(viewNode)
                 tbl_join_fields = create_table(columns_2, rows_2, row_style_2)
                 list_item.add(tbl_join_fields)
-                list_item.add(p())
-
-                # Вставляем таблицу со списком используемых столбцов
-                # columns, rows, row_style = get_columns_rows_from_elements_aggregation(viewNode.elements)
-                # list_item.add(create_table(columns, rows, row_style))
 
                 if(viewNode.filterExpression != None):
+                    list_item.add(p())
                     filter = create_filter_block(viewNode.filterExpression)
                     list_item.add(filter)
 
@@ -97,6 +93,35 @@ def create_page(xml):
                 list_item.add(create_table(columns, rows, row_style))
 
                 if(viewNode.filterExpression != None):
+                    list_item.add(p())
+                    filter = create_filter_block(viewNode.filterExpression)
+                    list_item.add(filter)
+
+            case 'View:Union':
+                first_line = p(strong(str(viewNode.name)))
+                list_item.add(first_line)
+
+                second_line = p('Объединение ')
+
+                quantity_inputs = len(viewNode.inputs)
+
+                for index, input in enumerate(viewNode.inputs):
+                    name = strong()
+                    name.add(re.sub('#/?./','',str(input.viewNode)))
+                    second_line.add(name)
+
+                    if(index != quantity_inputs - 1):
+                        second_line.add(' и ')
+                    
+                list_item.add(second_line)
+
+                # Формируем таблицу со списком объединения полей
+                columns, rows, rows_style = get_columns_rows_for_union(viewNode)
+                tbl_union = create_table(columns, rows, rows_style)
+                list_item.add(tbl_union)
+
+                if(viewNode.filterExpression != None):
+                    list_item.add(p())
                     filter = create_filter_block(viewNode.filterExpression)
                     list_item.add(filter)
 
@@ -316,5 +341,15 @@ def get_columns_rows_from_elements_for_join(viewNode: ViewNode ): #elements: Lis
 
         style = 'background-color: #FAE99F;' if element.calculationDefinition != None else ''
         rows_style.append([style, style, style, style, style])
+
+    return columns, rows, rows_style
+
+def get_columns_rows_for_union(viewNode):
+    """
+    Функция для сбора столбцов, строк и стилей для таблицы блока Union со списком полей
+    """
+    columns = ['Исходная нода', 'Исходное поле', 'Целевое поле']
+    rows = []
+    rows_style = []
 
     return columns, rows, rows_style
