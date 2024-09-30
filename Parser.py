@@ -38,7 +38,8 @@ def parse_element(element) -> Element:
 def parse_mapping(element) -> Mapping:
     return Mapping(
         targetName=element.get("targetName"),
-        sourceName=element.get("sourceName")
+        sourceName=element.get("sourceName"),
+        xsi_type=element.get("{http://www.w3.org/2001/XMLSchema-instance}type")
     )
 
 # Парсер для Input
@@ -79,6 +80,9 @@ def parse_view_node(element) -> ViewNode:
     
     join_elem = element.find("join")
     join = parse_join(join_elem) if join_elem is not None else None
+
+    windowFunction_elem = element.find("windowFunction")
+    windowFunction = parse_window_function(windowFunction_elem) if windowFunction_elem is not None else None
     
     return ViewNode(
         name=element.get("name"),
@@ -89,7 +93,8 @@ def parse_view_node(element) -> ViewNode:
         filterExpression=filter_expression,
         layout=None,  # Assuming layout isn't defined in the provided XML structure
         join=join,
-        joinOrder=element.get("joinOrder")
+        joinOrder=element.get("joinOrder"),
+        windowFunction=windowFunction
     )
 
 # Парсер для Parameter
@@ -131,3 +136,35 @@ def parse_column_view(xml_string: str) -> ColumnView:
         executionHints=root.get("executionHints"),
         viewNodes=view_nodes
     )
+
+# Парсер для WindowFunction
+def parse_window_function(element):
+    order_elem = element.find("order")
+    order = parse_order(order_elem)
+
+    rankThreshold_elem = element.find("rankThreshold")
+    rankThreshold = parse_rank_threshold(rankThreshold_elem)
+
+    return WindowFunction(
+        partitionElement=element.find("partitionElement").text,
+        order=order,
+        rankThreshold=rankThreshold,
+        rankElement=element.find("rankElement").text
+    )
+
+# Парсер для RankThreshold
+def parse_rank_threshold(element):
+
+    return RankThreshold(
+        constantValue=element.find("constantValue").text if element.find("constantValue") is not None else None,
+        parameter_value=element.find("parameterValue").text if element.find("parameterValue") is not None else None
+    )
+
+# Парсер для Order
+def parse_order(element):
+
+    return Order(
+        byElement=element.get("byElement"),
+        direction=element.get("direction")
+    )
+

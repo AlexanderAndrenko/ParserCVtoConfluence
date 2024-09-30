@@ -125,6 +125,28 @@ def create_page(xml):
                     filter = create_filter_block(viewNode.filterExpression)
                     list_item.add(filter)
 
+            case 'View:Rank':
+                first_line = p(strong(str(viewNode.name)))
+                list_item.add(first_line)
+
+                second_line = p('Из ')
+                strong_name = strong()
+
+                if(viewNode.inputs[0].entity != None):
+                    strong_name.add(re.sub('#/?./','',str(viewNode.inputs[0].entity)))
+                else:
+                    strong_name.add(re.sub('#/?./','',str(viewNode.inputs[0].viewNode)))
+
+                second_line.add(strong_name)
+                list_item.add(second_line)
+
+                # 
+
+                # Вставляем таблицу со списком используемых столбцов
+                columns, rows, row_style = get_columns_rows_for_rank(viewNode)
+                list_item.add(create_table(columns, rows, row_style))
+
+
             case _:
                 list_item.add(p('Неизвестный блок, необходимо произвести доработку парсинга'))
 
@@ -133,6 +155,17 @@ def create_page(xml):
 
     list_viewNodes.add(*list_items)
     page = list_viewNodes
+
+    # page = str(page) + '''
+    #             <br/>
+    #             <br/>
+    #             <ac:structured-macro ac:macro-id="39bc6723-d1c7-4f9a-914e-49f2594f3885" ac:name="expand" ac:schema-version="1">
+    #             <ac:parameter ac:name="title">XML</ac:parameter>
+    #             <ac:rich-text-body>
+    #                 <p>''' + xml + '''</p>
+    #             </ac:rich-text-body>
+    #             </ac:structured-macro>
+    #         '''
 
     return page
 
@@ -348,8 +381,55 @@ def get_columns_rows_for_union(viewNode):
     """
     Функция для сбора столбцов, строк и стилей для таблицы блока Union со списком полей
     """
-    columns = ['Исходная нода', 'Исходное поле', 'Целевое поле']
+    columns = ['Целевое поле']
     rows = []
     rows_style = []
+
+    for input in viewNode.inputs:
+        columns.append(re.sub('#/?./','',str(input.viewNode)))
+    
+    # Собираем строки
+    for element in viewNode.elements:
+        row = [element.name]
+
+        for input in viewNode.inputs:
+            field = ''
+            for mapping in input.mappings:
+                if(element.name == mapping.targetName and mapping.xsi_type != 'Type:ConstantElementMapping'):
+                    field = mapping.sourceName
+            row.append(field)
+        
+        rows.append(row)    
+
+    return columns, rows, rows_style
+
+def get_columns_rows_for_rank(viewNode):
+    """
+    Функция для сбора столбцов, строк и стилей для таблицы блока Rank со списком полей
+    """
+    columns = ['Наименование поля', 'Тип данных']
+    rows = []
+    rows_style = []
+
+    rank_column = re.sub('#/?./','',str(viewNode.windowFunction.rankElement))
+    rank_column = rank_column[rank_column.find('/') + 1:]
+
+    for element in viewNode.elements:
+        row = []
+        # Наименование поля
+        row.append(element.name)
+        # Тип данных
+        datatype = element.inlineType.primitiveType
+        if(element.inlineType.length != None and datatype not in {'DATE', 'TIMESTAMP'}):
+            datatype += '(' + str(element.inlineType.length) + ')'
+        row.append(datatype)
+
+        rows.append(row)
+
+        style = 'background-color: #FAE99F;' if element.name == rank_column else ''
+        rows_style.append([style, style])
+
+
+
 
     return columns, rows, rows_style

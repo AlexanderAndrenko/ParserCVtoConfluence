@@ -2916,9 +2916,1935 @@ cv = '''<?xml version="1.0" encoding="UTF-8"?>
 </View:ColumnView>
 '''
 
+cv_rank = '''<?xml version="1.0" encoding="UTF-8"?>
+<View:ColumnView xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Column="http://www.sap.com/ndb/DataModelFilter.ecore" xmlns:Param="http://www.sap.com/ndb/ViewModelParameter.ecore" xmlns:Type="http://www.sap.com/ndb/DataModelType.ecore" xmlns:View="http://www.sap.com/ndb/ViewModelView.ecore" schemaVersion="2.3" name="CV_XTR_TD_SKIP_PIKING" dataCategory="DIMENSION" hierarchiesSQLEnabled="false" defaultNode="#/0/Projection" clientDependent="false" applyPrivilegeType="ANALYTIC_PRIVILEGE" translationRelevant="true">
+  <endUserTexts label="CV_XTR_TD_SKIP_PIKING"/>
+  <origin/>
+  <parameter xsi:type="Param:DerivedParameter" name="IP_MANDT" mandatory="false" multipleSelections="false">
+    <endUserTexts label="IP_MANDT"/>
+    <inlineType name="CHAR" primitiveType="CHAR"/>
+    <defaultValue xsi:nil="true"/>
+    <derivationRule inputEnabled="false">
+      <scriptObject>#/1</scriptObject>
+    </derivationRule>
+  </parameter>
+  <executionHints/>
+  <viewNode xsi:type="View:Projection" name="EXCEPTION">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <elementFilter elementName="MANDT">
+      <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="$$IP_MANDT$$"/>
+    </elementFilter>
+    <input>
+      <entity>#/0/"SAPHANADB".ZTW075_EXCEPTION</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <layout xCoordinate="23" yCoordinate="1011" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="MAR">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="SCM_MATID_GUID16">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <input>
+      <entity>#/0/"SAPHANADB".MARA</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="SCM_MATID_GUID16" sourceName="SCM_MATID_GUID16"/>
+    </input>
+    <layout xCoordinate="177" yCoordinate="1011" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="ORDIM_C">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="BATCHID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <entity>#/0/"SAPHANADB"./SCWM/ORDIM_C</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCHID" sourceName="BATCHID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+    </input>
+    <layout xCoordinate="254" yCoordinate="915" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_1" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/EXCEPTION</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/MAR</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+    </input>
+    <layout xCoordinate="100" yCoordinate="915" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_1/EXCEPTION" rightInput="#/0/Join_1/MAR" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>MATID</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>SCM_MATID_GUID16</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_2" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_1</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/ORDIM_C</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+    </input>
+    <layout xCoordinate="176" yCoordinate="819" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_2/Join_1" rightInput="#/0/Join_2/ORDIM_C" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>LGNUM</leftElementName>
+      <leftElementName>TANUM</leftElementName>
+      <leftElementName>BATCH</leftElementName>
+      <leftElementName>ENTITLED</leftElementName>
+      <leftElementName>MATID</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>LGNUM</rightElementName>
+      <rightElementName>TANUM</rightElementName>
+      <rightElementName>BATCHID</rightElementName>
+      <rightElementName>ENTITLED</rightElementName>
+      <rightElementName>MATID</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="EXCEPTION_2">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <elementFilter elementName="MANDT">
+      <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="$$IP_MANDT$$"/>
+    </elementFilter>
+    <input>
+      <entity>#/0/"SAPHANADB".ZTW075_EXCEPTION</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <layout xCoordinate="330" yCoordinate="819" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="LOG_HEAD">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="DOC_NUMBER">
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="DOC_YEAR">
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/PI_LOGHEAD</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_NUMBER" sourceName="DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_YEAR" sourceName="DOC_YEAR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+    </input>
+    <layout xCoordinate="484" yCoordinate="819" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_3" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/EXCEPTION_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/LOG_HEAD</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+    </input>
+    <layout xCoordinate="390" yCoordinate="723" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_3/EXCEPTION_2" rightInput="#/0/Join_3/LOG_HEAD" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>PI_DOC_NUMBER</leftElementName>
+      <leftElementName>DOC_YEAR</leftElementName>
+      <leftElementName>LGNUM</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>DOC_NUMBER</rightElementName>
+      <rightElementName>DOC_YEAR</rightElementName>
+      <rightElementName>LGNUM</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="PI_IT_BIZ">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="LGNUM_HU">
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="HUIDENT">
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="ITEM_TYPE">
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <elementFilter elementName="ITEM_TYPE">
+      <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="P"/>
+    </elementFilter>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/PI_IT_BIZ</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM_HU" sourceName="LGNUM_HU"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="HUIDENT" sourceName="HUIDENT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_TYPE" sourceName="ITEM_TYPE"/>
+    </input>
+    <layout xCoordinate="544" yCoordinate="723" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_4" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_3</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/PI_IT_BIZ</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+    </input>
+    <layout xCoordinate="451" yCoordinate="627" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_4/Join_3" rightInput="#/0/Join_4/PI_IT_BIZ" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>GUID_DOC</leftElementName>
+      <leftElementName>LGNUM</leftElementName>
+      <leftElementName>LGPLA</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>GUID_DOC</rightElementName>
+      <rightElementName>LGNUM_HU</rightElementName>
+      <rightElementName>HUIDENT</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="PI_IT_BIZ_2">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="LINE_IDX">
+      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_TYPE">
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <elementFilter elementName="ITEM_TYPE">
+      <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="P"/>
+    </elementFilter>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/PI_IT_BIZ</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LINE_IDX" sourceName="LINE_IDX"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_TYPE" sourceName="ITEM_TYPE"/>
+    </input>
+    <layout xCoordinate="297" yCoordinate="627" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_5" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LINE_IDX">
+      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_4</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/PI_IT_BIZ_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LINE_IDX" sourceName="LINE_IDX"/>
+    </input>
+    <layout xCoordinate="359" yCoordinate="531" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_5/Join_4" rightInput="#/0/Join_5/PI_IT_BIZ_2" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>GUID_DOC</leftElementName>
+      <leftElementName>ITEM_NO</leftElementName>
+      <leftElementName>MATID</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>GUID_DOC</rightElementName>
+      <rightElementName>ITEM_NO</rightElementName>
+      <rightElementName>MATID</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="PI_DOC_IT">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="LINE_IDX">
+      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="ITEM_TYPE">
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="COUNT_USER">
+      <endUserTexts label="COUNT_USER"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="COUNT_DATE">
+      <endUserTexts label="COUNT_DATE"/>
+      <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="7"/>
+    </element>
+    <element name="DOC_STATUS">
+      <endUserTexts label="DOC_STATUS"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <elementFilter elementName="ITEM_TYPE">
+      <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="D"/>
+    </elementFilter>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/PI_DOC_IT</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LINE_IDX" sourceName="LINE_IDX"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_TYPE" sourceName="ITEM_TYPE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_USER" sourceName="COUNT_USER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_DATE" sourceName="COUNT_DATE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_STATUS" sourceName="DOC_STATUS"/>
+    </input>
+    <layout xCoordinate="513" yCoordinate="531" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_6" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="COUNT_USER">
+      <endUserTexts label="COUNT_USER"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LINE_IDX">
+      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="COUNT_DATE">
+      <endUserTexts label="COUNT_DATE"/>
+      <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="7"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="DOC_STATUS">
+      <endUserTexts label="DOC_STATUS"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_5</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LINE_IDX" sourceName="LINE_IDX"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/PI_DOC_IT</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_USER" sourceName="COUNT_USER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_DATE" sourceName="COUNT_DATE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_STATUS" sourceName="DOC_STATUS"/>
+    </input>
+    <layout xCoordinate="421" yCoordinate="435" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_6/Join_5" rightInput="#/0/Join_6/PI_DOC_IT" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>LINE_IDX</leftElementName>
+      <leftElementName>GUID_DOC</leftElementName>
+      <leftElementName>ITEM_NO</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>LINE_IDX</rightElementName>
+      <rightElementName>GUID_DOC</rightElementName>
+      <rightElementName>ITEM_NO</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="PI_DOC_TB">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="GUID_DOC">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ITEM_NO">
+      <inlineType primitiveType="NVARCHAR" length="6" precision="6" scale="0"/>
+    </element>
+    <element name="LINE_IDX">
+      <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="ITEM_TYPE">
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <elementFilter elementName="ITEM_TYPE">
+      <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="D"/>
+    </elementFilter>
+    <input>
+      <entity>#/0/"SAPHANADB"./LIME/PI_DOC_TB</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="GUID_DOC" sourceName="GUID_DOC"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_NO" sourceName="ITEM_NO"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LINE_IDX" sourceName="LINE_IDX"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ITEM_TYPE" sourceName="ITEM_TYPE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+    </input>
+    <layout xCoordinate="267" yCoordinate="435" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_7" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="COUNT_USER">
+      <endUserTexts label="COUNT_USER"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="COUNT_DATE">
+      <endUserTexts label="COUNT_DATE"/>
+      <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="7"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="DOC_STATUS">
+      <endUserTexts label="DOC_STATUS"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_6</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_USER" sourceName="COUNT_USER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_DATE" sourceName="COUNT_DATE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_STATUS" sourceName="DOC_STATUS"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/PI_DOC_TB</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+    </input>
+    <layout xCoordinate="330" yCoordinate="339" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_7/Join_6" rightInput="#/0/Join_7/PI_DOC_TB" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>GUID_DOC</leftElementName>
+      <leftElementName>ITEM_NO</leftElementName>
+      <leftElementName>LINE_IDX</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>GUID_DOC</rightElementName>
+      <rightElementName>ITEM_NO</rightElementName>
+      <rightElementName>LINE_IDX</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="ORDIM_C_2">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="BATCHID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="VLPLA">
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="TRART">
+      <inlineType primitiveType="NVARCHAR" length="1" precision="1" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>(&quot;TRART&quot; ='2') and (&quot;NISTM&quot; > 0)</formula>
+    </filterExpression>
+    <input>
+      <entity>#/0/"SAPHANADB"./SCWM/ORDIM_C</entity>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCHID" sourceName="BATCHID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VLPLA" sourceName="VLPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TRART" sourceName="TRART"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+    </input>
+    <layout xCoordinate="22" yCoordinate="819" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_9" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TANUM_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_1">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="TEST_FLAG" aggregationBehavior="NONE">
+      <inlineType name="VARCHAR" primitiveType="VARCHAR" length="1"/>
+      <calculationDefinition language="COLUMN_ENGINE">
+        <formula>if(&quot;CONFIRMED_AT_1&quot;>&quot;CONFIRMED_AT&quot;,'X','N')</formula>
+      </calculationDefinition>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/ORDIM_C_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_1" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_1" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_1" sourceName="CONFIRMED_BY"/>
+    </input>
+    <layout xCoordinate="89" yCoordinate="723" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_9/Join_2" rightInput="#/0/Join_9/ORDIM_C_2" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>LGNUM</leftElementName>
+      <leftElementName>BATCH</leftElementName>
+      <leftElementName>ENTITLED</leftElementName>
+      <leftElementName>LGPLA</leftElementName>
+      <leftElementName>CAT</leftElementName>
+      <leftElementName>MATID</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>LGNUM</rightElementName>
+      <rightElementName>BATCHID</rightElementName>
+      <rightElementName>ENTITLED</rightElementName>
+      <rightElementName>VLPLA</rightElementName>
+      <rightElementName>CAT</rightElementName>
+      <rightElementName>MATID</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_1">
+    <endUserTexts label=" "/>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TEST_FLAG">
+      <inlineType name="VARCHAR" primitiveType="VARCHAR" length="1" precision="0" scale="0"/>
+    </element>
+    <element name="TANUM_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_1">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <filterExpression language="COLUMN_ENGINE">
+      <formula>(&quot;TEST_FLAG&quot; = 'X')</formula>
+    </filterExpression>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_9</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TEST_FLAG" sourceName="TEST_FLAG"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_1" sourceName="TANUM_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_1" sourceName="CONFIRMED_AT_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_1" sourceName="CONFIRMED_BY_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <layout xCoordinate="89" yCoordinate="627" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Rank" name="Rank_1">
+    <endUserTexts label=" "/>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TEST_FLAG">
+      <inlineType name="VARCHAR" primitiveType="VARCHAR" length="1" precision="0" scale="0"/>
+    </element>
+    <element name="TANUM_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_1">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="Rank_Column" aggregationBehavior="NONE">
+      <inlineType primitiveType="BIGINT"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_1</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TEST_FLAG" sourceName="TEST_FLAG"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_1" sourceName="TANUM_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_1" sourceName="CONFIRMED_AT_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_1" sourceName="CONFIRMED_BY_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+      <layout xCoordinate="70" yCoordinate="30"/>
+    </input>
+    <layout xCoordinate="89" yCoordinate="531" width="-1" height="-1" expanded="true"/>
+    <windowFunction>
+      <partitionElement>#/0/Rank_1/TANUM</partitionElement>
+      <order byElement="#/0/Rank_1/TANUM" direction="DESC"/>
+      <rankThreshold>
+        <constantValue>2000000</constantValue>
+      </rankThreshold>
+      <rankElement>#/0/Rank_1/Rank_Column</rankElement>
+    </windowFunction>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection_3">
+    <endUserTexts label=" "/>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TEST_FLAG">
+      <inlineType name="VARCHAR" primitiveType="VARCHAR" length="1" precision="0" scale="0"/>
+    </element>
+    <element name="TANUM_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_1">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="Rank_Column">
+      <inlineType primitiveType="BIGINT" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <elementFilter elementName="Rank_Column">
+      <valueFilter xsi:type="Column:SingleValueFilter" including="true" value="1"/>
+    </elementFilter>
+    <input>
+      <viewNode xsi:type="View:Rank">#/0/Rank_1</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TEST_FLAG" sourceName="TEST_FLAG"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_1" sourceName="TANUM_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_1" sourceName="CONFIRMED_AT_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="Rank_Column" sourceName="Rank_Column"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_1" sourceName="CONFIRMED_BY_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <layout xCoordinate="89" yCoordinate="435" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_11" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TANUM_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_1">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_2</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Projection_3</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_1" sourceName="TANUM_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_1" sourceName="CONFIRMED_AT_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_1" sourceName="CONFIRMED_BY_1"/>
+    </input>
+    <layout xCoordinate="176" yCoordinate="339" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_11/Join_2" rightInput="#/0/Join_11/Projection_3" joinType="leftOuter">
+      <leftElementName>LGNUM</leftElementName>
+      <leftElementName>BATCH</leftElementName>
+      <leftElementName>ENTITLED</leftElementName>
+      <leftElementName>TANUM</leftElementName>
+      <leftElementName>LGPLA</leftElementName>
+      <leftElementName>CAT</leftElementName>
+      <leftElementName>VSOLM</leftElementName>
+      <leftElementName>CONFIRMED_BY</leftElementName>
+      <rightElementName>LGNUM</rightElementName>
+      <rightElementName>BATCH</rightElementName>
+      <rightElementName>ENTITLED</rightElementName>
+      <rightElementName>TANUM</rightElementName>
+      <rightElementName>LGPLA</rightElementName>
+      <rightElementName>CAT</rightElementName>
+      <rightElementName>VSOLM</rightElementName>
+      <rightElementName>CONFIRMED_BY</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:JoinNode" name="Join_8" joinOrder="OUTSIDE_IN">
+    <endUserTexts label=" "/>
+    <element name="COUNT_USER">
+      <endUserTexts label="COUNT_USER"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="COUNT_DATE">
+      <endUserTexts label="COUNT_DATE"/>
+      <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="7"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MANDT">
+      <inlineType primitiveType="NVARCHAR" length="3" precision="3" scale="0"/>
+    </element>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="BATCH">
+      <endUserTexts label="BATCH"/>
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="MATID">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="TANUM_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_1">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="DOC_STATUS">
+      <endUserTexts label="DOC_STATUS"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="TIMESTAMP">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_11</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="MANDT" sourceName="MANDT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATID" sourceName="MATID"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_1" sourceName="TANUM_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_1" sourceName="CONFIRMED_AT_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_1" sourceName="CONFIRMED_BY_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TIMESTAMP" sourceName="TIMESTAMP"/>
+    </input>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_7</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_USER" sourceName="COUNT_USER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_DATE" sourceName="COUNT_DATE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_STATUS" sourceName="DOC_STATUS"/>
+    </input>
+    <layout xCoordinate="253" yCoordinate="243" width="-1" height="-1" expanded="true"/>
+    <join leftInput="#/0/Join_8/Join_11" rightInput="#/0/Join_8/Join_7" joinType="leftOuter">
+      <leftElementName>MANDT</leftElementName>
+      <leftElementName>LGNUM</leftElementName>
+      <leftElementName>BATCH</leftElementName>
+      <leftElementName>ENTITLED</leftElementName>
+      <leftElementName>TANUM</leftElementName>
+      <leftElementName>LGPLA</leftElementName>
+      <leftElementName>CAT</leftElementName>
+      <leftElementName>MATID</leftElementName>
+      <leftElementName>PI_DOC_NUMBER</leftElementName>
+      <leftElementName>TIMESTAMP</leftElementName>
+      <rightElementName>MANDT</rightElementName>
+      <rightElementName>LGNUM</rightElementName>
+      <rightElementName>BATCH</rightElementName>
+      <rightElementName>ENTITLED</rightElementName>
+      <rightElementName>TANUM</rightElementName>
+      <rightElementName>LGPLA</rightElementName>
+      <rightElementName>CAT</rightElementName>
+      <rightElementName>MATID</rightElementName>
+      <rightElementName>PI_DOC_NUMBER</rightElementName>
+      <rightElementName>TIMESTAMP</rightElementName>
+    </join>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Final">
+    <endUserTexts label=" "/>
+    <element name="LGNUM">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="LGPLA">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="MATNR">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="BATCH_OLD">
+      <inlineType primitiveType="VARBINARY" length="16" precision="16" scale="0"/>
+    </element>
+    <element name="ENTITLED">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_OLD">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="TANUM">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="VSOLM">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="NISTM">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="TANUM_CONF">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_CONF_OLD">
+      <inlineType primitiveType="DECIMAL" length="15" precision="15" scale="0"/>
+    </element>
+    <element name="COUNT_USER">
+      <endUserTexts label="COUNT_USER"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="COUNT_DATE">
+      <endUserTexts label="COUNT_DATE"/>
+      <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="7"/>
+    </element>
+    <element name="QUANTITY">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY_1">
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="DOC_STATUS">
+      <endUserTexts label="DOC_STATUS"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="BATCH" aggregationBehavior="NONE">
+      <endUserTexts label="BATCH"/>
+      <inlineType name="VARBINARY" primitiveType="VARBINARY" length="16"/>
+      <calculationDefinition language="SQL">
+        <formula>&quot;BATCH_OLD&quot;</formula>
+      </calculationDefinition>
+    </element>
+    <element name="CONFIRMED_AT" aggregationBehavior="NONE">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP"/>
+      <calculationDefinition language="COLUMN_ENGINE">
+        <formula>&quot;CONFIRMED_AT_OLD&quot;</formula>
+      </calculationDefinition>
+    </element>
+    <element name="CONFIRMED_AT_CONF" aggregationBehavior="NONE">
+      <endUserTexts label="CONFIRMED_AT_CONF"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP"/>
+      <calculationDefinition language="COLUMN_ENGINE">
+        <formula>&quot;CONFIRMED_AT_CONF_OLD&quot;</formula>
+      </calculationDefinition>
+    </element>
+    <input>
+      <viewNode xsi:type="View:JoinNode">#/0/Join_8</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH_OLD" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_OLD" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_CONF" sourceName="TANUM_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_CONF_OLD" sourceName="CONFIRMED_AT_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_USER" sourceName="COUNT_USER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_DATE" sourceName="COUNT_DATE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_1" sourceName="CONFIRMED_BY_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_STATUS" sourceName="DOC_STATUS"/>
+    </input>
+    <layout xCoordinate="253" yCoordinate="165" width="-1" height="-1" expanded="true"/>
+  </viewNode>
+  <viewNode xsi:type="View:Projection" name="Projection">
+    <element name="LGNUM" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="LGNUM"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <element name="LGPLA" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="LGPLA"/>
+      <inlineType primitiveType="NVARCHAR" length="18" precision="18" scale="0"/>
+    </element>
+    <element name="MATNR" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="MATNR"/>
+      <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+    </element>
+    <element name="BATCH" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="BATCH"/>
+      <inlineType name="VARBINARY" primitiveType="VARBINARY" length="16" precision="0" scale="0"/>
+    </element>
+    <element name="ENTITLED" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="ENTITLED"/>
+      <inlineType primitiveType="NVARCHAR" length="10" precision="10" scale="0"/>
+    </element>
+    <element name="CAT" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CAT"/>
+      <inlineType primitiveType="NVARCHAR" length="2" precision="2" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CONFIRMED_AT"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="TANUM" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="VSOLM" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="VSOLM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="NISTM" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="NISTM"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="CONFIRMED_BY" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="PI_DOC_NUMBER" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="PI_DOC_NUMBER"/>
+      <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+    </element>
+    <element name="TANUM_CONF" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="TANUM"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_BY_CONF" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CONFIRMED_BY"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="CONFIRMED_AT_CONF" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="CONFIRMED_AT_CONF"/>
+      <inlineType name="TIMESTAMP" primitiveType="TIMESTAMP" length="0" precision="0" scale="0"/>
+    </element>
+    <element name="COUNT_USER" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="COUNT_USER"/>
+      <inlineType primitiveType="NVARCHAR" length="12" precision="12" scale="0"/>
+    </element>
+    <element name="COUNT_DATE" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="COUNT_DATE"/>
+      <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="7"/>
+    </element>
+    <element name="QUANTITY" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="QUANTITY"/>
+      <inlineType primitiveType="DECIMAL" length="31" precision="31" scale="14"/>
+    </element>
+    <element name="DOC_STATUS" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+      <endUserTexts label="DOC_STATUS"/>
+      <inlineType primitiveType="NVARCHAR" length="4" precision="4" scale="0"/>
+    </element>
+    <input>
+      <viewNode xsi:type="View:Projection">#/0/Final</viewNode>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGNUM" sourceName="LGNUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="LGPLA" sourceName="LGPLA"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="MATNR" sourceName="MATNR"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="BATCH" sourceName="BATCH"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="ENTITLED" sourceName="ENTITLED"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CAT" sourceName="CAT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT" sourceName="CONFIRMED_AT"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM" sourceName="TANUM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="VSOLM" sourceName="VSOLM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="NISTM" sourceName="NISTM"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY" sourceName="CONFIRMED_BY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="PI_DOC_NUMBER" sourceName="PI_DOC_NUMBER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="TANUM_CONF" sourceName="TANUM_CONF"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_BY_CONF" sourceName="CONFIRMED_BY_1"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="CONFIRMED_AT_CONF" sourceName="CONFIRMED_AT_CONF"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_USER" sourceName="COUNT_USER"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="COUNT_DATE" sourceName="COUNT_DATE"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="QUANTITY" sourceName="QUANTITY"/>
+      <mapping xsi:type="Type:ElementMapping" targetName="DOC_STATUS" sourceName="DOC_STATUS"/>
+    </input>
+    <layout xCoordinate="253" yCoordinate="87" width="0" height="0" expanded="true"/>
+  </viewNode>
+  <viewLayout relativeWidthScenario="45"/>
+</View:ColumnView>
+'''
+
 editorInput = Text(wrap="word")
 editorInput.pack(fill="both")
-InsertTextToOutput(editorInput, cv_stock)
+InsertTextToOutput(editorInput, cv_rank)
 
 btnConvertion = ttk.Button(text="Конвертировать", command=ClickbtnConvertion)
 btnConvertion.pack()

@@ -30,6 +30,7 @@ class Element:
 class Mapping:
     targetName: str
     sourceName: str
+    xsi_type: str
 
 # Input class definition
 @dataclass
@@ -53,6 +54,26 @@ class Join:
     leftElementName: List[str]
     rightElementName: List[str]
 
+# Order class definition
+@dataclass
+class Order:
+    byElement: str = None
+    direction: str = None
+
+# RankThreshold class definition
+@dataclass
+class RankThreshold:
+    constantValue: str = None
+    parameter_value: str = None
+
+# WindowFunction class definition
+@dataclass
+class WindowFunction:
+    partitionElement: str
+    order: Order
+    rankThreshold: RankThreshold
+    rankElement: str 
+
 # ViewNode class definition
 @dataclass
 class ViewNode:
@@ -65,6 +86,7 @@ class ViewNode:
     layout: Optional[dict] = None
     join: Optional[Join] = None
     joinOrder: Optional[str] = None
+    windowFunction: WindowFunction = None
 
 # Parameter class definition
 @dataclass
